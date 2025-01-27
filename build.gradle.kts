@@ -32,10 +32,6 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
-    // RestDoc
-    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
-    testImplementation("com.epages:restdocs-api-spec-mockmvc:0.17.1")
-
     // JPA 관련
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("com.mysql:mysql-connector-j")
@@ -49,6 +45,14 @@ dependencies {
     // 유효성 검사
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
+// Retrofit 의존성
+    implementation("com.squareup.retrofit2:retrofit:2.10.0") // 버전은 필요에 따라 조정
+
+// Jackson Converter 의존성
+    implementation("com.squareup.retrofit2:converter-jackson:2.10.0") // Jackson converter
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0") // Jackson 데이터 바인딩
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0") // Java 8 Date/Time 지원
+
 
     // Test관련
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
@@ -57,10 +61,13 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-actuator")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+    // RestDoc
+    testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
+    testImplementation("com.epages:restdocs-api-spec-mockmvc:0.17.1")
+
     // Mockito
     testImplementation("org.mockito:mockito-core:3.3.0")
     testImplementation("com.squareup.retrofit2:retrofit-mock:2.10.0")
-
 
 }
 
