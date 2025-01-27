@@ -1,4 +1,4 @@
-package lecture.fastcampus.ecommerce.fpay.infrastructure;
+package lecture.fastcampus.ecommerce.core.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
