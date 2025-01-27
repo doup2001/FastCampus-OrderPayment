@@ -1,4 +1,4 @@
-package lecture.fastcampus.ecommerce.fpay;
+package lecture.fastcampus.ecommerce.fpay.repesentation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lecture.fastcampus.ecommerce.fpay.representation.request.order.Orderer;
@@ -70,22 +70,22 @@ public class OrderControllerDocTest {
                 )
             );
     }
-//
-//    @Test
-//    public void newOrder_4XX_ConstraintHasValueBlank() throws Exception {
-//        PurchaseOrder newOrder = new PurchaseOrder(new Orderer("", "010-1234-1234"),
-//            List.of(new PurchaseOrderItem(1, UUID.randomUUID(), "농심 짜파게티 4봉", 4500, 1, 4500)));
-//
-//        String requestJson = objectMapper.writeValueAsString(newOrder);
-//        this.mockMvc.perform(RestDocumentationRequestBuilders.post("/order/new")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .accept(MediaType.APPLICATION_JSON)
-//                .content(requestJson))
-//            .andExpect(status().is4xxClientError())
-//            .andExpect(result -> Assertions.assertInstanceOf(MethodArgumentNotValidException.class, result.getResolvedException()))
-//            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value("ERROR"))
-//            .andDo(document("ConstraintHasValueBlank")
-//            );
-//    }
+
+    @Test
+    public void newOrder_4XX_ConstraintHasValueBlank() throws Exception {
+        PurchaseOrder newOrder = new PurchaseOrder(new Orderer("", "010-1234-1234"),
+            List.of(new PurchaseOrderItem(1, UUID.randomUUID(), "농심 짜파게티 4봉", 4500, 1, 4500)));
+
+        String requestJson = objectMapper.writeValueAsString(newOrder);
+        this.mockMvc.perform(RestDocumentationRequestBuilders.post("/order/new")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(requestJson))
+            .andExpect(status().is4xxClientError())
+            .andExpect(result -> Assertions.assertInstanceOf(MethodArgumentNotValidException.class, result.getResolvedException()))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.status").value("ERROR"))
+            .andDo(document("ConstraintHasValueBlank")
+            );
+    }
 
 }
