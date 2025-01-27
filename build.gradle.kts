@@ -27,21 +27,49 @@ extra["snippetsDir"] = file("build/generated-snippets")
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // lombok
+    compileOnly("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.30")
 
     // RestDoc
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     testImplementation("com.epages:restdocs-api-spec-mockmvc:0.17.1")
 
+    // JPA 관련
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("com.mysql:mysql-connector-j")
+    runtimeOnly("com.h2database:h2")
+
+    // 기타
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    // 유효성 검사
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
+
+    // Test관련
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-starter-actuator")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    // Mockito
+    testImplementation("org.mockito:mockito-core:3.3.0")
+    testImplementation("com.squareup.retrofit2:retrofit-mock:2.10.0")
+
+
 }
 
-openapi3 { // 2.3
-    this.setServer("http://localhost:8080")
-    title = "FastCamp E-commerce"
-    description = "주문 및 결제 파트."
-    version = "1.0.0"
-    format = "yaml"
+openapi3 {
+    this.setServer("https://localhost:8080") // list로 넣을 수 있어 각종 환경의 URL들을 넣을 수 있음!
+    title = "FastEcommerce - Order/Payment"
+    description = "Order/Payment API"
+    version = "0.1.0"
+    format = "yaml" // or json
 }
 
 tasks.withType<Test> {
